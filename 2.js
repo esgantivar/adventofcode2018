@@ -272,3 +272,36 @@ const a3 = counts.filter(c => {
   return c.indexOf(3) >= 0;
 }).length;
 console.log(`checksum: ${a2 * a3}`);
+
+const pairs = [];
+for (let i = 0; i < t.length; i++) {
+  
+  for (let j = 0; j < t.length; j++) {
+    if (t[i] !== t[j]) {
+      const c1 = t[i].split('');
+      const c2 = t[j].split('');
+      let err = 0;
+      for (let k = 0; k < c1.length; k++) {
+        if (c1[k] !== c2[k]) {
+          err += 1;
+        }
+      }
+      if (err === 1) {
+        pairs.push({a: t[i], b: t[j]});
+      }
+    }
+  }
+  
+}
+
+if(pairs.length > 0) {
+  const l = [];
+  const c1 = pairs[0].a.split('');
+  const c2 = pairs[0].b.split('');
+  for(let i = 0; i < c1.length; i++){
+    if(c1[i] === c2[i]) {
+      l.push(c1[i]);
+    }
+  }
+  console.log(l.join(''));
+}
