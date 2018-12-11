@@ -62,6 +62,35 @@ function getcount(k) {
     }
     return c;
 }
+const area = [];
+for (let i = 0; i < dist.length; i++) {
+    for (let j = 0; j < dist[i].length; j++) {
+        //if (dist[i][j] !== '.') {
+            area.push({
+                parent: dist[i][j],
+                x: i,
+                y: j
+            });
+        //}
+    }
+}
 
-console.log(Math.max(...counters));
-
+area.forEach(item => {
+    const dist = [];
+    let total = 0;
+    input.forEach(point => {
+        const d = Math.abs(item.x - point.x) + Math.abs(item.y - point.y)
+        dist.push(d);
+        total += d;
+    });
+    item['dist'] = dist;
+    item['total'] = total;
+});
+const safe =[]
+area.forEach(item => {
+    if(item.total < 10000) {
+        safe.push(item);
+    }
+})
+// console.table(safe);
+console.log(safe.length);
